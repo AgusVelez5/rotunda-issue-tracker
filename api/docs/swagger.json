@@ -1,0 +1,71 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "0.1.0",
+    "title": "Rotunda Issue Tracker",
+    "license": {
+      "name": "MIT",
+      "url": "https://opensource.org/licenses/MIT"
+    },
+    "contact": {
+      "name": "Agustin Mauras Velez",
+      "email": "agustinmaurasvelez@gmail.com",
+      "url": "https://www.linkedin.com/in/agustin-velez/"
+    }
+  },
+  "host": "localhost:3000",
+  "basePath": "/api/v1",
+  "tags": [{ "name": "Issues" }, { "name": "Members" }],
+  "paths": {
+    "/issues": {
+      "get": {
+        "tags": ["Issues"],
+        "description": "Get open issues",
+        "parameters": [
+          {
+            "name": "who",
+            "in": "query",
+            "type": "string",
+            "required": false
+          },
+          {
+            "name": "sortBy",
+            "in": "query",
+            "type": "string",
+            "required": false,
+            "default": "score",
+            "enum": ["title", "number", "score", "opener"]
+          },
+          {
+            "name": "order",
+            "in": "query",
+            "type": "string",
+            "required": false,
+            "default": "desc",
+            "enum": ["asc", "desc"]
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful request"
+          }
+        },
+        "produces": ["application/json"]
+      }
+    },
+    "/members": {
+      "get": {
+        "tags": ["Members"],
+        "description": "Get organization members",
+        "responses": {
+          "200": {
+            "description": "Successful request"
+          }
+        },
+        "produces": ["application/json"]
+      }
+    }
+  },
+  "schemes": ["http"],
+  "consumes": ["application/json"]
+}
